@@ -1,6 +1,9 @@
+/**
+ * @file 
+ */
 function KeyboardInputManager() {
   this.events = {};
-	console.log(window.navigator.msPointerEnabled);
+	//console.log(window.navigator.msPointerEnabled);
   if (window.navigator.msPointerEnabled) {
     //Internet Explorer 10 style
     this.eventTouchstart    = "MSPointerDown";
@@ -51,6 +54,7 @@ KeyboardInputManager.prototype.listen = function () {
 
   // Respond to direction keys
   document.addEventListener("keydown", function (event) {
+  	console.log("======================================================");
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
                     event.shiftKey;
     var mapped    = map[event.which];

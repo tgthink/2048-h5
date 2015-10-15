@@ -1,16 +1,18 @@
 /**
- * 
+ * @file 管理器
+ */
+/**
  * @param {number} size 
  * @param {object} InputManager
  * @param {object} Actuator
  * @param {object} StorageManager
  */
 function GameManager(size, InputManager, Actuator, StorageManager) {
-	 /**
-		* Size of the grid
-		* @type {number}
-		* @private
-		*/
+   /**
+	* Size of the grid
+	* @type {number}
+	* @private
+	*/
   this.size           = size;
   this.inputManager   = new InputManager;
   this.storageManager = new StorageManager;
