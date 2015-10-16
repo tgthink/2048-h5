@@ -1,3 +1,6 @@
+/**
+ * @file 本地存储管理
+ */
 window.fakeStorage = {
   _data: {},
 
@@ -48,7 +51,10 @@ LocalStorageManager.prototype.setBestScore = function (score) {
   this.storage.setItem(this.bestScoreKey, score);
 };
 
-// Game state getters/setters and clearing
+/**
+ * Game state getters/setters and clearing
+ * 
+ */
 LocalStorageManager.prototype.getGameState = function () {
   var stateJSON = this.storage.getItem(this.gameStateKey);
   return stateJSON ? JSON.parse(stateJSON) : null;
@@ -61,3 +67,8 @@ LocalStorageManager.prototype.setGameState = function (gameState) {
 LocalStorageManager.prototype.clearGameState = function () {
   this.storage.removeItem(this.gameStateKey);
 };
+
+
+
+
+

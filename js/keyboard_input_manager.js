@@ -1,9 +1,16 @@
 /**
  * @file 
  */
+/**
+ * 操作管理
+ * @class
+ */
 function KeyboardInputManager() {
+	/**
+	 * 
+	 * 
+	 */
   this.events = {};
-	//console.log(window.navigator.msPointerEnabled);
   if (window.navigator.msPointerEnabled) {
     //Internet Explorer 10 style
     this.eventTouchstart    = "MSPointerDown";
@@ -25,6 +32,11 @@ KeyboardInputManager.prototype.on = function (event, callback) {
   this.events[event].push(callback);
 };
 
+/**
+ * 
+ * @param {string} event
+ * @param {Object} data
+ */
 KeyboardInputManager.prototype.emit = function (event, data) {
   var callbacks = this.events[event];
   if (callbacks) {
@@ -42,10 +54,10 @@ KeyboardInputManager.prototype.listen = function () {
     39: 1, // Right
     40: 2, // Down
     37: 3, // Left
-    75: 0, // Vim up
-    76: 1, // Vim right
-    74: 2, // Vim down
-    72: 3, // Vim left
+    75: 0, // K Vim up
+    76: 1, // L Vim right
+    74: 2, // J Vim down
+    72: 3, // H Vim left
     87: 0, // W
     68: 1, // D
     83: 2, // S
@@ -54,7 +66,6 @@ KeyboardInputManager.prototype.listen = function () {
 
   // Respond to direction keys
   document.addEventListener("keydown", function (event) {
-  	console.log("======================================================");
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
                     event.shiftKey;
     var mapped    = map[event.which];
@@ -130,12 +141,18 @@ KeyboardInputManager.prototype.listen = function () {
     }
   });
 };
-
+/**
+ * 重新开始游戏
+ * @param {object} event
+ */
 KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
   this.emit("restart");
 };
-
+/**
+ * 继续玩
+ * @param {object} event
+ */
 KeyboardInputManager.prototype.keepPlaying = function (event) {
   event.preventDefault();
   this.emit("keepPlaying");
@@ -146,3 +163,10 @@ KeyboardInputManager.prototype.bindButtonPress = function (selector, fn) {
   button.addEventListener("click", fn.bind(this));
   button.addEventListener(this.eventTouchend, fn.bind(this));
 };
+
+
+
+
+
+
+

@@ -1,3 +1,6 @@
+/**
+ * @file 
+ */
 function HTMLActuator() {
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
@@ -5,6 +8,10 @@ function HTMLActuator() {
   this.messageContainer = document.querySelector(".game-message");
 
   this.score = 0;
+  
+	// 2 4 8 16 32 64 128 256 512 1024 2048
+	// 士兵-少尉-中尉-上尉-少校-中校-上校-大校-少将-中将-上将
+	this.rank = ["士兵","少尉","中尉","上尉","少校","中校","上校","大校","少将","中将","上将"];
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
@@ -47,6 +54,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.addTile = function (tile) {
+	console.log(tile);
   var self = this;
 
   var wrapper   = document.createElement("div");
@@ -62,6 +70,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
+  
   inner.textContent = tile.value;
 
   if (tile.previousPosition) {
@@ -137,3 +146,9 @@ HTMLActuator.prototype.clearMessage = function () {
   this.messageContainer.classList.remove("game-won");
   this.messageContainer.classList.remove("game-over");
 };
+/**
+ * 
+ */
+HTMLActuator.prototype.loadRank = function() {
+	
+}

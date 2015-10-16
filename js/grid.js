@@ -33,10 +33,12 @@ Grid.prototype.fromState = function (state) {
   return cells;
 };
 
-// Find the first available random position
+/**
+ * Find the first available random position
+ * 
+ */
 Grid.prototype.randomAvailableCell = function () {
   var cells = this.availableCells();
-
   if (cells.length) {
     return cells[Math.floor(Math.random() * cells.length)];
   }
@@ -63,7 +65,11 @@ Grid.prototype.eachCell = function (callback) {
   }
 };
 
-// Check if there are any cells available
+/**
+ * Check if there are any cells available
+ * @public
+ * @return {boolean} 返回值描述
+ */
 Grid.prototype.cellsAvailable = function () {
   return !!this.availableCells().length;
 };
