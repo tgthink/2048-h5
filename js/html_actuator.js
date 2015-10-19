@@ -2,16 +2,28 @@
  * @file 
  */
 function HTMLActuator() {
-  this.tileContainer    = document.querySelector(".tile-container");
-  this.scoreContainer   = document.querySelector(".score-container");
-  this.bestContainer    = document.querySelector(".best-container");
-  this.messageContainer = document.querySelector(".game-message");
+	this.tileContainer    = document.querySelector(".tile-container");
+	this.scoreContainer   = document.querySelector(".score-container");
+	this.bestContainer    = document.querySelector(".best-container");
+	this.messageContainer = document.querySelector(".game-message");
 
-  this.score = 0;
+	this.score = 0;
   
 	// 2 4 8 16 32 64 128 256 512 1024 2048
 	// 士兵-少尉-中尉-上尉-少校-中校-上校-大校-少将-中将-上将
-	this.rank = ["士兵","少尉","中尉","上尉","少校","中校","上校","大校","少将","中将","上将"];
+	this.ranks = [
+					{"value": 2, "rank": "士兵"},
+					{"value": 4, "rank": "少尉"},
+					{"value": 8, "rank": "中尉"},
+					{"value": 16, "rank": "上尉"},
+					{"value": 32, "rank": "少校"},
+					{"value": 64, "rank": "中校"},
+					{"value": 128, "rank": "上校"},
+					{"value": 256, "rank": "大校"},
+					{"value": 512, "rank": "少将"},
+					{"value": 1024, "rank": "中将"},
+					{"value": 2048, "rank": "上将"}
+				];
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
@@ -54,7 +66,6 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.addTile = function (tile) {
-	console.log(tile);
   var self = this;
 
   var wrapper   = document.createElement("div");
@@ -71,7 +82,7 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   inner.classList.add("tile-inner");
   
-  inner.textContent = tile.value;
+  inner.textContent = this.loadRank(tile.value);
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -147,8 +158,16 @@ HTMLActuator.prototype.clearMessage = function () {
   this.messageContainer.classList.remove("game-over");
 };
 /**
- * 
+ * 加载等级
+ * @param {number} value
  */
-HTMLActuator.prototype.loadRank = function() {
-	
+HTMLActuator.prototype.loadRank = function(value) {
+	var returnRank = "";
+	var ranks =  this.ranks;
+	for (var i = 0, ranksLength = ranks.length; i < ranksLength ; i++) {
+		if ( ranks[i]["value"] == value ) {
+			returnRank = ranks[i]["rank"];
+		}
+	}
+	return returnRank;
 }

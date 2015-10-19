@@ -1,0 +1,9 @@
+{
+  "name": "2048-h5",
+    "version": "0.0.1",
+    "devDependencies": {
+        "grunt": "0.4.1",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-sass": "*"
+    }
+}
